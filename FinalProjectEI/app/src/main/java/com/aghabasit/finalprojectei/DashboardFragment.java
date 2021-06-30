@@ -3,6 +3,7 @@ package com.aghabasit.finalprojectei;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -137,3 +138,46 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+        LinearLayoutManager layoutManagerIncome = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+        layoutManagerIncome.setStackFromEnd(true);
+        layoutManagerIncome.setReverseLayout(true);
+        mRecyclerIncome.setHasFixedSize(true);
+        mRecyclerIncome.setLayoutManager(layoutManagerIncome);
+
+        LinearLayoutManager layoutManagerExpense = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+        layoutManagerExpense.setStackFromEnd(true);
+        layoutManagerExpense.setReverseLayout(true);
+        mRecyclerExpense.setHasFixedSize(true);
+        mRecyclerExpense.setLayoutManager(layoutManagerExpense);
+
+
+        return myview;
+    }
+    //Floating button animation
+
+    private void floatingButtonAnimation(){
+        if(isOpen){
+            fab_income.startAnimation(fadeClose);
+            fab_expense.startAnimation(fadeClose);
+            fab_income.setClickable(false);
+            fab_expense.setClickable(false);
+            fab_income_text.startAnimation(fadeClose);
+            fab_expense_text.startAnimation(fadeClose);
+            fab_income_text.setClickable(false);
+            fab_expense_text.setClickable(false);
+        }
+        else{
+            fab_income.startAnimation(fadeOpen);
+            fab_expense.startAnimation(fadeOpen);
+            fab_income.setClickable(true);
+            fab_expense.setClickable(true);
+            fab_expense_text.startAnimation(fadeOpen);
+            fab_income_text.startAnimation(fadeOpen);
+            fab_income_text.setClickable(true);
+            fab_expense_text.setClickable(true);
+        }
+        isOpen=!isOpen;
+
+    }
