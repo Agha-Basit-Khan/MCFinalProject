@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:theme = "@style/ThemeOverlay.AppCompat.Dark"
+    android:backgroundTint="@android:color/holo_orange_dark"
+    android:background="@android:color/holo_orange_dark"
+    android:layout_height="200dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:background="@android:color/holo_orange_dark"
+        android:text="@string/expense_manager"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:gravity="center">
+    </TextView>
+</LinearLayout>
