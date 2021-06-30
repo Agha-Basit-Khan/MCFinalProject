@@ -2,9 +2,19 @@ package com.aghabasit.finalprojectei;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class SignUp extends AppCompatActivity {
+    private EditText mEmail;
+    private EditText mPassword;
+    private Button signupButton;
+    private TextView mLogin;
+    private ProgressDialog mDialog;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
