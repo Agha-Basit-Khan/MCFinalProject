@@ -1,14 +1,82 @@
 package com.aghabasit.finalprojectei;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class ExpenseFragment extends AppCompatActivity {
+public class ExpenseFragment extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public ExpenseFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ExpenseFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ExpenseFragment newInstance(String param1, String param2) {
+        ExpenseFragment fragment = new ExpenseFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_fragment);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
-}
+
+    //Firebase database
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference mExpenseDatabase;
+
+    //Recyclerview
+
+    private RecyclerView recyclerView;
+
+    //TextView
+
+    private TextView expenseSumResult;
+
+
+    //Edit data item
+
+    private EditText edtAmount;
+    private EditText edtType;
+    private EditText edtNote;
+
+    private Button btnUpdate;
+    private Button btnDelete;
+
+    //Data variable
+
+    private String type;
+    private String note;
+    private int amount;
+    private String post_key;
