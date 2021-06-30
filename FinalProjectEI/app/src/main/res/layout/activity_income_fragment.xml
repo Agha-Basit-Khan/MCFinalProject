@@ -55,6 +55,12 @@
 
     </androidx.cardview.widget.CardView>
 
-    
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recycler_id_income"
+        android:layout_height="match_parent">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
