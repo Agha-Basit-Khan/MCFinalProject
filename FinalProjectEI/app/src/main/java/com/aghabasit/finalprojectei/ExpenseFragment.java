@@ -252,3 +252,14 @@ public class ExpenseFragment extends Fragment {
                 dialog.dismiss();
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpenseDatabase.child(post_key).removeValue();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+}
