@@ -164,10 +164,4 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
     }
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Log.i("ITEM ID", Integer.toString(item.getItemId()));
-        displaySelectedListener(item.getItemId());
-        return true;
-    }
-}
+    
