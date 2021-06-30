@@ -115,7 +115,46 @@
             </LinearLayout>
 
 
-            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/btnUpdDelete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/holo_red_dark"
+                        android:text="DELETE"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        app:backgroundTint="#D31717" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/btnUpdUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/holo_green_dark"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:backgroundTint="@android:color/holo_green_dark"
+                        android:text="UPDATE"
+                        app:backgroundTint="#22CF29" />
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
