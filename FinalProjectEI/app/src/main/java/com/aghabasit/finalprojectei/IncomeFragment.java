@@ -136,3 +136,74 @@ public class IncomeFragment extends Fragment {
 
         return myview;
     }
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        FirebaseRecyclerAdapter<Data, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(
+                Data.class,
+                R.layout.income_recycler_data,
+                MyViewHolder.class,
+                mIncomeDatabase
+        ) {
+            @Override
+            protected void populateViewHolder(MyViewHolder viewHolder, final Data model, final int position) {
+                viewHolder.setType(model.getType());
+                viewHolder.setNote(model.getNote());
+                viewHolder.setDate(model.getDate());
+                viewHolder.setAmount(model.getAmount());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        post_key = getRef(position).getKey();
+
+                        type = model.getType();
+                        note = model.getNote();
+                        amount = model.getAmount();
+
+                        updateDataItem();
+                    }
+                });
+
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        View mView;
+
+        public MyViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+        }
+
+
+        private void setType(String type){
+            TextView mType = mView.findViewById(R.id.type_txt_income);
+            mType.setText(type);
+        }
+
+        private void setNote(String note){
+            TextView mNote = mView.findViewById(R.id.note_txt_income);
+            mNote.setText(note);
+        }
+
+        private void setDate(String date){
+            TextView mDate = mView.findViewById(R.id.date_txt_income);
+            mDate.setText(date);
+        }
+
+        private void setAmount(float amount){
+            TextView mAmount = mView.findViewById(R.id.amount_txt_income);
+            String smAmount = String.valueOf(amount);
+            mAmount.setText(smAmount);
+        }
+
+    }
