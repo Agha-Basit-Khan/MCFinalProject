@@ -32,7 +32,46 @@
                 android:textColor="@android:color/holo_orange_dark"
                 android:text="Income VS Expense"/>
         </LinearLayout>
-        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:elevation="10dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/linechart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Income Per Day"
+                android:textColor="@android:color/holo_orange_dark"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:elevation="10dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Expense Per Day"
+                android:textColor="@android:color/holo_orange_dark"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
 
 
