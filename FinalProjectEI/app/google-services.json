@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "450774910805",
+    "project_id": "expense-income-a2c3c",
+    "storage_bucket": "expense-income-a2c3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450774910805:android:8ff0a1d2c5e1db083c51dc",
+        "android_client_info": {
+          "package_name": "com.aghabasit.expense_income"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450774910805-mnhqr52mb0n84vvsuhu2a11tkj06j3u3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ3tjzxa3LGvsRvi6sTsocQeVz8Xv_PwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450774910805-mnhqr52mb0n84vvsuhu2a11tkj06j3u3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
