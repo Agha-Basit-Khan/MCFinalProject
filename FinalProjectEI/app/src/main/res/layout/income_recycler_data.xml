@@ -62,7 +62,22 @@
 
         </RelativeLayout>
 
-        
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="600000"
+                android:textColor="@color/teal_700"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textStyle="bold"
+                android:id="@+id/amount_txt_income"
+                />
+
+        </RelativeLayout>
 
 
 
