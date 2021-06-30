@@ -78,3 +78,19 @@ public class Login extends AppCompatActivity {
                 });
             }
         });
+        mSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignUp.class));
+            }
+        });
+        // Redirect to reset password activity
+        mForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),SignUp.class));
+
+            }
+        });
+    }
+}
