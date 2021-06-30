@@ -1,10 +1,15 @@
 package com.aghabasit.finalprojectei;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -81,3 +86,53 @@ public class IncomeFragment extends Fragment {
     private String note;
     private int amount;
     private String post_key;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View myview =  inflater.inflate(R.layout.fragment_income, container, false);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String uid = mUser.getUid();
+        mIncomeDatabase = FirebaseDatabase.getInstance().getReference().child("IncomeData").child(uid);
+
+        incomeTotalSum = myview.findViewById(R.id.income_txt_result);
+
+
+        recyclerView = myview.findViewById(R.id.recycler_id_income);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+        mIncomeDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                int totalvalue = 0;
+
+                for (DataSnapshot mysnapshot: snapshot.getChildren()){
+                    Data data = mysnapshot.getValue(Data.class);
+                    totalvalue += data.getAmount();
+
+                    String sTotalvalue = String.valueOf(totalvalue);
+
+                    incomeTotalSum.setText(sTotalvalue+".00");
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        return myview;
+    }
