@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -95,5 +98,69 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 }
             }
         });
+    }
+    private void setFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
+
+        if(drawerLayout.isDrawerOpen(GravityCompat.END)){
+            drawerLayout.closeDrawer(GravityCompat.END);
+        }
+        else{
+            super.onBackPressed();
+        }
+
+    }
+
+    public void displaySelectedListener(int itemId){
+        Fragment fragment = null;
+
+        switch(itemId){
+            case android.R.id.home:
+                DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
+                drawerLayout.openDrawer(GravityCompat.START);
+                return;
+            case R.id.dashboard:
+                bottomNavigationView.setSelectedItemId(R.id.dashboard);
+                fragment=new DashboardFragment();
+                break;
+
+            case R.id.income:
+                bottomNavigationView.setSelectedItemId(R.id.income);
+                fragment=new IncomeFragment();
+                break;
+
+            case R.id.expense:
+                bottomNavigationView.setSelectedItemId(R.id.expense);
+                fragment=new ExpenseFragment();
+                break;
+            case R.id.stats:
+                bottomNavigationView.setSelectedItemId(R.id.stats);
+                bottomNavigationView.findViewById(R.id.stats).performClick();
+                bottomNavigationView.performClick();
+                fragment=new StatsFragment();
+                break;
+            case R.id.account:
+                fragment=new AccountFragment();
+                break;
+            case R.id.logout:
+                mAuth.signOut();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                break;
+        }
+        if(fragment!=null){
+            FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.main_frame, fragment);
+            ft.commit();
+        }
+
+        DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
     }
 }
