@@ -30,4 +30,17 @@ public class AccountFragment extends Fragment {
         Date date1 = new Date(timestampCreate);
         SimpleDateFormat jdf = new SimpleDateFormat("dd MMM yyyy");
         String java_date = jdf.format(date1);
-        
+        SimpleDateFormat jdf1 = new SimpleDateFormat("HH:mm:ss z");
+        String TimeOfCreation = jdf1.format(date1);
+        dateofCreation.setText(java_date);
+        timeOfCreation.setText(TimeOfCreation);
+        Long lastSignInTS=user.getMetadata().getLastSignInTimestamp();
+
+        Date date2 = new Date(lastSignInTS);
+        SimpleDateFormat jdf2 = new SimpleDateFormat("dd MMM yyyy    HH:mm:ss z");
+        String SignInAt = jdf2.format(date2);
+        signInAt.setText(SignInAt);
+
+        return myView;
+    }
+}
