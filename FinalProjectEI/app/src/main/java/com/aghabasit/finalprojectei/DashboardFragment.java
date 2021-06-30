@@ -1,5 +1,6 @@
 package com.aghabasit.finalprojectei;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,5 +85,55 @@ public class DashboardFragment extends Fragment {
             public void onClick(View v) {
                 addData();
                 floatingButtonAnimation();
+            }
+        });
+        mIncomeDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                int total = 0;
+
+                for(DataSnapshot mysnap: snapshot.getChildren()){
+                    Data data = mysnap.getValue(Data.class);
+
+                    total += data.getAmount();
+
+                    String stResult = String.valueOf(total);
+
+                    totalIncomResult.setText(stResult+".00");
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //Calculate total expense
+
+        mExpenseDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                int total= 0;
+
+                for(DataSnapshot mysnap: snapshot.getChildren()){
+
+                    Data data = mysnap.getValue(Data.class);
+
+                    total += data.getAmount();
+
+                    String stResult = String.valueOf(total);
+
+                    totalExpenseResult.setText(stResult+".00");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
