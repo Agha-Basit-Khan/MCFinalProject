@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class ExpenseFragment extends Fragment {
 
@@ -170,3 +174,81 @@ public class ExpenseFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
     }
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        View mView;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+        }
+
+        private void setType(String type) {
+            TextView mType = mView.findViewById(R.id.type_txt_expense);
+            mType.setText(type);
+        }
+
+        private void setNote(String note) {
+            TextView mNote = mView.findViewById(R.id.note_txt_expense);
+            mNote.setText(note);
+        }
+
+        private void setDate(String date) {
+            TextView mDate = mView.findViewById(R.id.date_txt_expense);
+            mDate.setText(date);
+        }
+
+        private void setAmount(float amount) {
+            TextView mAmount = mView.findViewById(R.id.amount_txt_expense);
+            String smAmount = String.valueOf(amount);
+            mAmount.setText(smAmount);
+        }
+
+    }
+
+    private void updateDataItem() {
+
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View myview = inflater.inflate(R.layout.update_data_item, null);
+        mydialog.setView(myview);
+
+        edtAmount = myview.findViewById(R.id.amount);
+        edtNote = myview.findViewById(R.id.note_edt);
+        edtType = myview.findViewById(R.id.type_edt);
+
+        edtType.setText(type);
+        edtType.setSelection(type.length());
+
+        edtNote.setText(note);
+        edtNote.setSelection(note.length());
+
+        edtAmount.setText(String.valueOf(amount));
+        edtAmount.setSelection(String.valueOf(amount).length());
+
+        btnUpdate = myview.findViewById(R.id.btnUpdUpdate);
+        btnDelete = myview.findViewById(R.id.btnUpdDelete);
+
+        final AlertDialog dialog = mydialog.create();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                type = edtType.getText().toString().trim();
+                note = edtNote.getText().toString().trim();
+                amount= Integer.parseInt(edtAmount.getText().toString().trim());
+
+                String stamount = String.valueOf(amount);
+                stamount = edtAmount.getText().toString().trim();
+                int intamount = Integer.parseInt(stamount);
+
+                String mDate = DateFormat.getDateInstance().format(new Date());
+
+                Data data = new Data(intamount, type, note, post_key, mDate);
+
+                mExpenseDatabase.child(post_key).setValue(data);
+
+                dialog.dismiss();
+            }
+        });
