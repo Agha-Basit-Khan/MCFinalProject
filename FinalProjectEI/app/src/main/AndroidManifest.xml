@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProjectEI">
-        <activity android:name=".StatsFragment"></activity>
+        <activity android:name=".AccountFragment"></activity>
+        <activity android:name=".StatsFragment" />
         <activity android:name=".IncomeFragment" />
         <activity android:name=".ExpenseFragment" />
         <activity android:name=".DashboardFragment" />
